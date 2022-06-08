@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ExternalFileDialog.cs" type="Script" id=2]
+[ext_resource path="res://font_descr.tres" type="DynamicFont" id=3]
+
+[node name="ExternalFileDialog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+visible = true
+margin_right = 775.0
+margin_bottom = 454.0
+custom_fonts/title_font = ExtResource( 1 )
+popup_exclusive = true
+
+[node name="Files" type="ScrollContainer" parent="WindowDialog"]
+anchor_left = 0.01
+anchor_top = 0.059
+anchor_right = 0.99
+anchor_bottom = 1.0
+margin_left = 0.25
+margin_top = 0.214001
+margin_right = -0.25
+margin_bottom = -65.0
+
+[node name="FileList" type="VBoxContainer" parent="WindowDialog/Files"]
+margin_right = 759.0
+margin_bottom = 362.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 1
+
+[node name="Label" type="Label" parent="WindowDialog"]
+anchor_left = 0.01
+anchor_right = 0.01
+margin_left = 0.25
+margin_right = 130.25
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "Files from working_dir/External:"
+valign = 1
+
+[node name="Cancel" type="Button" parent="WindowDialog"]
+anchor_left = 0.99
+anchor_top = 0.99
+anchor_right = 0.99
+anchor_bottom = 0.99
+margin_left = -120.25
+margin_top = -53.46
+margin_right = -0.250061
+margin_bottom = 0.540009
+custom_fonts/font = ExtResource( 1 )
+text = "Cancel"
+
+[node name="Import" type="Button" parent="WindowDialog"]
+anchor_left = 0.99
+anchor_top = 0.99
+anchor_right = 0.99
+anchor_bottom = 0.99
+margin_left = -243.25
+margin_top = -53.46
+margin_right = -123.25
+margin_bottom = 0.540009
+custom_fonts/font = ExtResource( 1 )
+text = "Import"
+
+[node name="Selected" type="Label" parent="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 396.0
+margin_right = -257.0
+margin_bottom = -4.0
+custom_fonts/font = ExtResource( 3 )
+valign = 1
