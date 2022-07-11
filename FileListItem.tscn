@@ -39,3 +39,13 @@ rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 5
+
+[node name="Delete" type="Button" parent="."]
+anchor_left = 0.935
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.33496
+margin_right = 1.0
+hint_tooltip = "Delete"
+custom_fonts/font = ExtResource( 3 )
+text = "X"

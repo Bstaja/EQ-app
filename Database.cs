@@ -2,8 +2,12 @@ using Godot;
 using System;
 using LiteDB;
 
+//Baza de date este un obiect de tip Node (un obiect simplu în Godot)
 public class Database : Node
 {
+	//Am creat o clasă care definește o intrare în baza de date
+	//Fiecare item are un id unic, un nume, o descriere, un fișier și o icoană
+	//Icoanele nu au fost implementate încă, deci nu vor fi folosite
 	public class Entry
 	{
 		public int Id {get; set;}
@@ -21,9 +25,12 @@ public class Database : Node
 			return s;
 		}
 	}
+
+	//Am folosit o bază de date LiteDB, am găsit-o la întâmplare pe internet
 	private LiteDatabase db;
 	private ILiteStorage<int> storage;
 	private ILiteCollection<Entry> col;
+	//Baza de date cuprinde colecții și un mediu de stocare
 	public void InitializeDatabase(String working_dir)
 	{
 		db = new LiteDatabase(working_dir+"/Database.db");
@@ -31,6 +38,7 @@ public class Database : Node
 		storage =  db.GetStorage<int>();
 	}
 
+	//Funcție pentru adăugarea unei noi intrări în baza de date
 	public void AddEntry(String N, String D, String F, String I = null)
 	{
 		Entry E = new Entry
@@ -42,15 +50,16 @@ public class Database : Node
 		};
 		col.Insert(E);
 		E.FileId = E.Id;
+		//Fișierul asociat intrării are id-ul cu 200 mai mare decât id-ul intrării, prin urmare
+		//	numărul maxim de grafice ce pot fi înregistrate în baza de date este de 200
 		E.IconId = E.Id+200;
 		col.Update(E);
-		if (F!=null)
-		{
-			storage.Upload(E.FileId, F);
-			//storage.Upload(E.IconId, I);
-		}
+
+		storage.Upload(E.FileId, F);
+		//storage.Upload(E.IconId, I);
 	}
 
+	//Ștergerea unei intrări din baza de date după id-ul unic
 	public void DeleteEntryId(int Id)
 	{
 		Entry E = col.FindById(Id);
@@ -59,10 +68,10 @@ public class Database : Node
 		col.Delete(Id);
 	}
 
+	//Obținerea tuturor graficelor din baza de date
 	public Godot.Collections.Array<Godot.Collections.Array> GetEntries()
 	{
 		col.EnsureIndex("Name");
-		//Entry E = col.FindOne("$.Name = 'mere'");
 		Entry[] All = col.Query().ToArray();
 		Godot.Collections.Array<Godot.Collections.Array> Arr = new Godot.Collections.Array<Godot.Collections.Array>();
 
@@ -77,6 +86,7 @@ public class Database : Node
 		return Arr;
 	}
 
+	//Descărcarea unui fișier din baza de date într-o locație temporară
 	public void DownloadGraph(int id, String function)
 	{
 		Entry E = col.FindById(id);
@@ -86,12 +96,4 @@ public class Database : Node
 		GetParent().Call(function, OS.GetUserDataDir()+"/temp/tempdata.txt");
 		
 	}
-
-    public override void _Ready()
-    {
-		//InitializeDatabase(OS.GetSystemDir(OS.SystemDir.Desktop));
-		//AddEntry("pere", "aha");
-		//DeleteEntryId(2);
-		//GD.Print(GetEntries());
-    }
 }

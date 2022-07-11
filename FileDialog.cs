@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+//FileDialog pentru gestionarea intrărilor/fișierelor din baza de date
 public class FileDialog : Control
 {
 	private WindowDialog wd;
@@ -22,6 +23,7 @@ public class FileDialog : Control
 		}
 
 		db.Call("AddEntry", new String[]{name.Text, descr.Text, OS.GetUserDataDir()+"/temp/tempdata.txt", null});
+		//Funcția de mai jos eliberează din memorie acest FileDialog
 		QueueFree();
 	}
 

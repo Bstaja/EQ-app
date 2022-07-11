@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+//LegendItem reprezintă un obiect de tip Panel din lista de comparație
+//Un Panel este un obiect din UI - panou, se pot atașa diverse lucruri la el (butoane, text, texturi etc.)
 public class LegendItem : Panel
 {
 	Vector2[] data_points;

@@ -1,6 +1,9 @@
 using Godot;
 using System;
 
+//Am creat programul pe linux și nu eram sigur de compatibilitatea cu winows la deschiderea unui file dialog de sistem
+//	prin urmare am creat propriul FileDialog care funcționează pe orice platformă
+//Accesul la fișiere este restricționat doar la folderul "External" din folderul de lucru al programului
 public class ExternalFileDialog : Control
 {
 	private String dir = "/External";
@@ -10,12 +13,14 @@ public class ExternalFileDialog : Control
 	{
 		QueueFree();
 	}
-
+	
+	//Actualizarea fișierului selectat în căsuța de text
 	private void Select(String file)
 	{
 		GetNode<Label>("WindowDialog/Selected").Text = file;
 	}
 
+	//Încărcarea fișierului selectat
 	private void Import()
 	{
 		String f = GetNode<Label>("WindowDialog/Selected").Text;
@@ -41,6 +46,8 @@ public class ExternalFileDialog : Control
 		GetNode<WindowDialog>("WindowDialog").Connect("popup_hide", this, "Cancel");
 
 		GetNode<Label>("WindowDialog/Label").Text = "Files from "+dir;
+		
+		//Obținerea unei liste cu toate fișierele din folder
 		if (d.Open(dir) == Error.Ok)
 		{
 			d.ListDirBegin();
@@ -56,6 +63,7 @@ public class ExternalFileDialog : Control
 					i.GetNode<Label>("Name").Text = fileName;
 					i.GetNode<Label>("Description").Text = "";
 					i.Connect("pressed", this, "Select", new Godot.Collections.Array{fileName});
+					i.GetNode<Button>("Delete").Visible = false;
 					list.AddChild(i);
 				}
 				fileName = d.GetNext();
