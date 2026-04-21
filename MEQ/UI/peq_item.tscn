@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctcac7mbmi36c"]
+
+[ext_resource type="FontFile" uid="uid://ijuel8pw7gpb" path="res://UI/Fonts/UbuntuCondensed-Regular.ttf" id="2"]
+[ext_resource type="Script" path="res://UI/peq_item.gd" id="2_td4bo"]
+
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("2")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="3"]
+default_font = SubResource("4")
+
+[node name="PEQItem" type="Panel"]
+custom_minimum_size = Vector2(0, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+theme = SubResource("3")
+script = ExtResource("2_td4bo")
+
+[node name="HSplitContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+size_flags_horizontal = 3
+
+[node name="Frequency" type="SpinBox" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 10.0
+max_value = 25000.0
+value = 10.0
+exp_edit = true
+rounded = true
+suffix = "Hz"
+
+[node name="Amplitude" type="SpinBox" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 30.0
+step = 0.01
+suffix = "dB"
+
+[node name="Q" type="SpinBox" parent="HSplitContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+min_value = 0.001
+step = 0.001
+value = 0.001
+suffix = "Q"
+
+[node name="bDelete" type="Button" parent="HSplitContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="FilterSettings" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+size_flags_horizontal = 3
+
+[node name="Active" type="CheckBox" parent="FilterSettings"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Type" type="OptionButton" parent="FilterSettings"]
+layout_mode = 2
+size_flags_horizontal = 3

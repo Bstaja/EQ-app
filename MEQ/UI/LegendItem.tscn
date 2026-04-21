@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cys3agexa2rbd"]
+
+[ext_resource type="Script" path="res://UI/LegendItem.gd" id="1_lpeue"]
+
+[node name="LegendItem" type="Panel"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lpeue")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChangeColor" type="ColorPickerButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 0
+edit_alpha = false
+
+[node name="Name" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Main Graph"
+caret_blink = true
+
+[node name="bVisible" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+expand_icon = true
+
+[node name="bDelete" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[connection signal="color_changed" from="HBoxContainer/ChangeColor" to="." method="_on_change_color_color_changed"]
+[connection signal="text_changed" from="HBoxContainer/Name" to="." method="_on_name_text_changed"]
+[connection signal="toggled" from="HBoxContainer/bVisible" to="." method="_on_b_visible_toggled"]
+[connection signal="pressed" from="HBoxContainer/bDelete" to="." method="_on_b_delete_pressed"]

@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://dv6dnsap2lf2m"]
+
+[ext_resource type="FontFile" uid="uid://ijuel8pw7gpb" path="res://UI/Fonts/UbuntuCondensed-Regular.ttf" id="1_m01fy"]
+
+[resource]
+base_font = ExtResource("1_m01fy")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhqr3og8ga74l"]
+
+[ext_resource type="Script" path="res://UI/eq_side_menu.gd" id="1_def7k"]
+
+[node name="EQSideMenu" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_def7k")
+
+[node name="Filters" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="BtnNewFilter" type="Button" parent="Filters"]
+layout_mode = 2
+text = "Add New Filter"
+
+[node name="Filters" type="ScrollContainer" parent="Filters"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="List" type="VBoxContainer" parent="Filters/Filters"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Tools" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[connection signal="button_down" from="Filters/BtnNewFilter" to="." method="_on_btn_new_filter_button_down"]

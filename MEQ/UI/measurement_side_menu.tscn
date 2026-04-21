@@ -1,0 +1,196 @@
+[gd_scene load_steps=3 format=3 uid="uid://brjvcc06xnyim"]
+
+[ext_resource type="Script" path="res://UI/measurement_side_menu.gd" id="1_on1mu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_33gdk"]
+
+[node name="MeasurementSideMenu" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_on1mu")
+
+[node name="Measurement" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Measurement"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_33gdk")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Measurement"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Measurement/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="Measurement/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputDevice" type="VBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/InputDevice"]
+layout_mode = 2
+text = "Input Device:"
+
+[node name="OptionButton" type="OptionButton" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/InputDevice"]
+layout_mode = 2
+
+[node name="OutputDevice" type="VBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/OutputDevice"]
+layout_mode = 2
+text = "Output Device:"
+
+[node name="OptionButton" type="OptionButton" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/OutputDevice"]
+layout_mode = 2
+
+[node name="TestSignal" type="VBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/TestSignal"]
+layout_mode = 2
+text = "Test Signal:"
+
+[node name="OptionButton" type="OptionButton" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/TestSignal"]
+layout_mode = 2
+
+[node name="Duration" type="VBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/Duration"]
+layout_mode = 2
+text = "Duration:"
+
+[node name="SpinBox" type="SpinBox" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/Duration"]
+layout_mode = 2
+min_value = 15.0
+max_value = 30.0
+value = 15.0
+rounded = true
+suffix = "s"
+
+[node name="FFTSize" type="VBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/FFTSize"]
+layout_mode = 2
+text = "FFT Size:"
+
+[node name="OptionButton" type="OptionButton" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/FFTSize"]
+layout_mode = 2
+
+[node name="Reference" type="HBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/Reference"]
+layout_mode = 2
+text = "Mic. Cal. File: "
+
+[node name="LineEdit" type="LineEdit" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/Reference"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "File path..."
+caret_blink = true
+
+[node name="Button" type="Button" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/Reference"]
+layout_mode = 2
+text = "Browse..."
+
+[node name="GenerateEQ" type="VBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ"]
+layout_mode = 2
+text = "Auto Calibration:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Enable" type="HBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer/Enable"]
+layout_mode = 2
+text = "Enabled: "
+
+[node name="CheckBox" type="CheckBox" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer/Enable"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Error" type="HBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer/Error"]
+layout_mode = 2
+text = "Generate Error Graph:"
+
+[node name="CheckBox" type="CheckBox" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer/Error"]
+layout_mode = 2
+
+[node name="Reference" type="HBoxContainer" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer/Reference"]
+layout_mode = 2
+text = "Reference: "
+
+[node name="LineEdit" type="LineEdit" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer/Reference"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Default"
+placeholder_text = "File path..."
+caret_blink = true
+
+[node name="Button" type="Button" parent="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/GenerateEQ/HBoxContainer/VBoxContainer/Reference"]
+layout_mode = 2
+text = "Browse..."
+
+[node name="VSeparator2" type="VSeparator" parent="Measurement/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StartMeasurement" type="Button" parent="Measurement"]
+layout_mode = 2
+text = "Start Measurement"
+
+[node name="Filters" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="BtnNewFilter" type="Button" parent="Filters"]
+layout_mode = 2
+text = "Add New Filter"
+
+[node name="Filters" type="ScrollContainer" parent="Filters"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="List" type="VBoxContainer" parent="Filters/Filters"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="item_selected" from="Measurement/ScrollContainer/HBoxContainer/VBoxContainer/FFTSize/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="button_down" from="Filters/BtnNewFilter" to="." method="_on_btn_new_filter_button_down"]

@@ -1,0 +1,255 @@
+[gd_scene load_steps=8 format=3 uid="uid://gcxpfv3djdy5"]
+
+[ext_resource type="Script" path="res://Core/Scripts/Main.gd" id="1_uunbu"]
+[ext_resource type="FontFile" uid="uid://ijuel8pw7gpb" path="res://UI/Fonts/UbuntuCondensed-Regular.ttf" id="2_hkng2"]
+[ext_resource type="PackedScene" uid="uid://bhqr3og8ga74l" path="res://UI/eq_side_menu.tscn" id="2_j156b"]
+[ext_resource type="Script" path="res://Core/Scripts/Draw/LayerAxis2.gd" id="3_5vvgt"]
+
+[sub_resource type="Animation" id="Animation_mfhhs"]
+resource_name = "HideSideMenu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelMain/EQSideMenu:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelMain/EQSideMenu:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.3, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelMain/GraphArea:anchor_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.3, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelMain/GraphArea/ToggleSideMenu:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelMain/GraphArea/ToggleSideMenu:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["<", ">"]
+}
+
+[sub_resource type="Animation" id="Animation_n6s6i"]
+resource_name = "ShowSideMenu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelMain/EQSideMenu:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.3, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelMain/EQSideMenu:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelMain/GraphArea:anchor_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelMain/GraphArea/ToggleSideMenu:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelMain/GraphArea/ToggleSideMenu:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [">", "<"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t44ck"]
+_data = {
+"HideSideMenu": SubResource("Animation_mfhhs"),
+"ShowSideMenu": SubResource("Animation_n6s6i")
+}
+
+[node name="WindowMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uunbu")
+
+[node name="MenuBar" type="MenuBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.04
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="MenuBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelMain" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.04
+anchor_right = 1.0
+anchor_bottom = 0.94
+
+[node name="EQSideMenu" parent="PanelMain" instance=ExtResource("2_j156b")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.3
+graph_list_node = NodePath("../GraphArea/LayerGraphs/EQGraphs")
+
+[node name="GraphArea" type="ColorRect" parent="PanelMain"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LayerAxis" type="LayerAxis" parent="PanelMain/GraphArea"]
+x1_offset = 40
+x2_offset = 40
+y1_offset = 22
+y2_offset = 22
+range_frequency = Vector2(15, 22000)
+text_font = ExtResource("2_hkng2")
+process_priority = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_5vvgt")
+
+[node name="LayerGraphs" type="Control" parent="PanelMain/GraphArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EQGraphs" type="Control" parent="PanelMain/GraphArea/LayerGraphs"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphCurve" type="GraphCurve" parent="PanelMain/GraphArea/LayerGraphs/EQGraphs"]
+layer_axis_path = NodePath("../../../LayerAxis")
+graph_color = Color(0.305882, 0.360784, 0.843137, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToggleSideMenu" type="Button" parent="PanelMain/GraphArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_right = 18.0
+offset_bottom = 30.0
+grow_vertical = 2
+text = "<"
+
+[node name="PanelBottom" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.94
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_method = 1
+libraries = {
+"": SubResource("AnimationLibrary_t44ck")
+}
+
+[connection signal="pressed" from="PanelMain/GraphArea/ToggleSideMenu" to="." method="_on_toggle_side_menu_pressed"]

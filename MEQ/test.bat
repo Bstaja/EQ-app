@@ -1,0 +1,1 @@
+python -m autoeq --input-file "D:\Facultate\Licenta\TestStuff\Calibration.csv" --target "D:\Facultate\Licenta\TestStuff\Reference.csv" --output-dir "D:\Facultate\Licenta\TestStuff\OutputDIr" --parametric-eq --parametric-eq-config "8_PEAKING_WITH_SHELVES" --fs 48000 --bit-depth 16 --max-gain 30

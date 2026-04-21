@@ -1,0 +1,375 @@
+[gd_scene load_steps=11 format=3 uid="uid://gcxpfv3djdy5"]
+
+[ext_resource type="Script" path="res://Core/Scripts/Main.gd" id="1_uunbu"]
+[ext_resource type="FontFile" uid="uid://ijuel8pw7gpb" path="res://UI/Fonts/UbuntuCondensed-Regular.ttf" id="2_hkng2"]
+[ext_resource type="Script" path="res://Core/Scripts/Draw/LayerAxis2.gd" id="3_5vvgt"]
+[ext_resource type="Script" path="res://UI/CountDown.gd" id="4_08y44"]
+[ext_resource type="Script" path="res://TestStuff.gd" id="5_13mp4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkpgm"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[sub_resource type="Animation" id="Animation_mfhhs"]
+resource_name = "HideSideMenu"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelMain/GraphArea/ToggleSideMenu:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelMain/GraphArea/ToggleSideMenu:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["<", ">"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelMain/TabMenus:offset_left")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, -384.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelMain/GraphArea:offset_left")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [384, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelMain/TabMenus:offset_right")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [384, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n6s6i"]
+resource_name = "ShowSideMenu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelMain/GraphArea/ToggleSideMenu:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelMain/GraphArea/ToggleSideMenu:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [">", "<"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelMain/TabMenus:offset_right")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 384.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelMain/TabMenus:offset_left")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-384, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelMain/GraphArea:offset_left")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 384.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t44ck"]
+_data = {
+"HideSideMenu": SubResource("Animation_mfhhs"),
+"ShowSideMenu": SubResource("Animation_n6s6i")
+}
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_r0vms"]
+
+[node name="WindowMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_uunbu")
+
+[node name="MenuBar" type="MenuBar" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 28.8
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="MenuBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelMain" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 24.0
+offset_bottom = -48.0
+mouse_filter = 2
+
+[node name="GraphSelection" type="HBoxContainer" parent="PanelMain"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.3
+offset_bottom = 32.4
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PanelMain/GraphSelection"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SelectGraph" type="OptionButton" parent="PanelMain/GraphSelection"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TabMenus" type="Control" parent="PanelMain"]
+layout_mode = 1
+anchor_bottom = 1.0
+offset_top = 32.0
+offset_right = 384.0
+
+[node name="GraphArea" type="ColorRect" parent="PanelMain"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LayerAxis" type="LayerAxis" parent="PanelMain/GraphArea"]
+x1_offset = 48
+x2_offset = 40
+y1_offset = 22
+y2_offset = 48
+range_amplitude = Vector2(-35, 35)
+text_font = ExtResource("2_hkng2")
+process_priority = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_5vvgt")
+
+[node name="LayerGraphs" type="Control" parent="PanelMain/GraphArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToggleSideMenu" type="Button" parent="PanelMain/GraphArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -51.0
+offset_right = 18.0
+grow_vertical = 0
+text = "<"
+
+[node name="LabelFr" type="Label" parent="PanelMain/GraphArea"]
+modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.5
+offset_top = -23.0
+offset_right = 57.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Frequency (Hz)"
+
+[node name="VerticalTextHolder" type="Control" parent="PanelMain/GraphArea"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="LabelDb" type="Label" parent="PanelMain/GraphArea/VerticalTextHolder"]
+modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 56.0
+rotation = -1.5708
+text = "Amplitude (dB)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountDown" type="Label" parent="PanelMain/GraphArea"]
+modulate = Color(1, 1, 1, 0.239216)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 420
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_08y44")
+
+[node name="PanelTop" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xkpgm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelTop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelBottom" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xkpgm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelBottom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelBottom/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelBottom/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="NewEQ" type="Button" parent="PanelBottom/HBoxContainer"]
+layout_mode = 2
+text = "EQ + "
+
+[node name="NewMeasurement" type="Button" parent="PanelBottom/HBoxContainer"]
+layout_mode = 2
+text = "M + "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t44ck")
+}
+
+[node name="TestStuff" type="Node" parent="."]
+script = ExtResource("5_13mp4")
+
+[node name="AudioRecorder" type="AudioStreamPlayer" parent="TestStuff"]
+stream = SubResource("AudioStreamMicrophone_r0vms")
+autoplay = true
+bus = &"AudioInput"
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="TestStuff"]
+
+[connection signal="item_selected" from="PanelMain/GraphSelection/SelectGraph" to="." method="_on_select_graph_item_selected"]
+[connection signal="mouse_entered" from="PanelMain/GraphArea/LayerAxis" to="PanelMain/GraphArea/LayerAxis" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelMain/GraphArea/LayerAxis" to="PanelMain/GraphArea/LayerAxis" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelMain/GraphArea/ToggleSideMenu" to="." method="_on_toggle_side_menu_pressed"]
+[connection signal="finished_counting" from="PanelMain/GraphArea/CountDown" to="." method="_on_count_down_finished_counting"]
+[connection signal="finished_recording" from="PanelMain/GraphArea/CountDown" to="." method="_on_count_down_finished_recording"]
+[connection signal="pressed" from="PanelBottom/HBoxContainer/NewEQ" to="." method="_on_new_eq_pressed"]
+[connection signal="pressed" from="PanelBottom/HBoxContainer/NewMeasurement" to="." method="_on_new_measurement_pressed"]
